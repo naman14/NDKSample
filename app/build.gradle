@@ -1,0 +1,35 @@
+apply plugin: 'com.android.model.application'
+
+model {
+    android {
+        compileSdkVersion 24
+        buildToolsVersion "24.0.3"
+
+        defaultConfig {
+            applicationId "com.naman14.ndksample"
+            minSdkVersion.apiLevel 16
+            targetSdkVersion.apiLevel 23
+            versionCode 1
+            versionName "1.0"
+        }
+        buildTypes {
+            release {
+                minifyEnabled false
+                proguardFiles.add(file("proguard-rules.pro"))
+            }
+        }
+
+    }
+}
+
+repositories {
+    flatDir {
+        dirs '../androidlame/build/outputs/aar'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:24.2.1'
+
+}
