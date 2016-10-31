@@ -5,6 +5,12 @@ model {
         compileSdkVersion 24
         buildToolsVersion "24.0.3"
 
+        ndk {
+            moduleName "ndksample"
+            ldLibs.add("log")
+            CFlags.add("-DSTDC_HEADERS")
+        }
+
         defaultConfig {
             applicationId "com.naman14.ndksample"
             minSdkVersion.apiLevel 16
