@@ -6,7 +6,7 @@ LOCAL_PATH := $(call my-dir)
     LOCAL_SRC_FILES     :=  \
                                ./blur/nativeblur.c \
 
-    LOCAL_LDLIBS := -llog
+    LOCAL_LDLIBS := -llog -ljnigraphics
     LOCAL_CFLAGS = -DSTDC_HEADERS
 
     include $(BUILD_SHARED_LIBRARY)

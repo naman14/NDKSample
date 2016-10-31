@@ -8,6 +8,7 @@ model {
         ndk {
             moduleName "ndksample"
             ldLibs.add("log")
+            ldLibs.add("jnigraphics")
             CFlags.add("-DSTDC_HEADERS")
         }
 
@@ -26,6 +27,27 @@ model {
         }
 
     }
+    android.sources {
+
+        main {
+            jniLibs {
+                source {
+                    srcDirs 'src/main/libs'
+                }
+            }
+        }
+
+        main {
+            jni {
+                exportedHeaders {
+                    srcDir "src/main/jni"
+                }
+                source {
+                    srcDirs = ['src/main/none'] // [] could be set instead but will disable even symbol resolution inside the editor
+                }
+            }
+        }
+    }
 }
 
 repositories {
@@ -37,5 +59,7 @@ repositories {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+
 
 }
