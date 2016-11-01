@@ -26,21 +26,35 @@
                 android:textColor="@android:color/black"
                 android:textSize="35sp" />
 
-            <TextView
-                android:id="@+id/status_java"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="10dp"
-                android:textColor="@android:color/black" />
+                android:layout_gravity="bottom|left"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/status_java_numbers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/status_java_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Java"
                 android:layout_gravity="top|left"
                 android:layout_margin="15dp"
-                android:textColor="@android:color/holo_blue_dark"/>
+                android:text="Java"
+                android:textColor="@android:color/holo_blue_dark" />
 
         </FrameLayout>
 
@@ -57,10 +71,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Native"
                 android:layout_gravity="top|left"
                 android:layout_margin="15dp"
-                android:textColor="@android:color/holo_blue_dark"/>
+                android:text="Native"
+                android:textColor="@android:color/holo_blue_dark" />
 
             <TextView
                 android:id="@+id/txt_number_native"
@@ -70,13 +84,27 @@
                 android:textColor="@android:color/black"
                 android:textSize="35sp" />
 
-            <TextView
-                android:id="@+id/status_native"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
+                android:layout_gravity="bottom|left"
                 android:layout_marginBottom="20dp"
-                android:textColor="@android:color/black" />
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/status_native_numbers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/status_native_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black" />
+
+            </LinearLayout>
 
         </FrameLayout>
 

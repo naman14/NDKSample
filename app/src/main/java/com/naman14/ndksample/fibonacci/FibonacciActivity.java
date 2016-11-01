@@ -12,17 +12,25 @@ import android.widget.TextView;
 
 import com.naman14.ndksample.R;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by naman on 01/11/16.
  */
 public class FibonacciActivity extends AppCompatActivity {
 
-    TextView statusJava, numberJava;
+    TextView statusJavaTime, statusJavaNumbers, numberJava;
     FloatingActionButton fabStart;
 
-    static TextView statusNative, numberNative;
-    static long nativeStartTime;
+    static TextView statusNativeTime, statusNativeNumbers, numberNative;
     static Handler uihandler;
+
+    protected Timer timeTicker = new Timer("Ticker");
+    private Handler timerHandler = new Handler();
+    long elapsedTimeJava, elapsedTimeNative;
+
+    static int num;
 
     static {
         System.loadLibrary("ndksample");
@@ -36,18 +44,43 @@ public class FibonacciActivity extends AppCompatActivity {
         fabStart = (FloatingActionButton) findViewById(R.id.fabStart);
         numberJava = (TextView) findViewById(R.id.txt_number_java);
         numberNative = (TextView) findViewById(R.id.txt_number_native);
-        statusJava = (TextView) findViewById(R.id.status_java);
-        statusNative = (TextView) findViewById(R.id.status_native);
+        statusJavaTime = (TextView) findViewById(R.id.status_java_time);
+        statusJavaNumbers = (TextView) findViewById(R.id.status_java_numbers);
+
+        statusNativeTime = (TextView) findViewById(R.id.status_native_time);
+        statusNativeNumbers = (TextView) findViewById(R.id.status_native_numbers);
 
         fabStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startExecution(50);
+                num = 45;
+                startExecution(num + 1);
             }
         });
     }
 
+
     private void startExecution(final int n) {
+        timerHandler.post(new Runnable() {
+            @Override
+            public void run() {
+
+                boolean javaCompleted = statusJavaTime.getText().toString().contains("Completed");
+                boolean nativeCompleted = statusNativeTime.getText().toString().contains("Completed");
+
+                if (!javaCompleted) {
+                    statusJavaTime.setText("Time taken - " + String.valueOf(elapsedTimeJava) + " s");
+                    elapsedTimeJava += 1;
+                }
+                if (!nativeCompleted) {
+                    statusNativeTime.setText("Time taken - " + String.valueOf(elapsedTimeNative) + " s");
+                    elapsedTimeNative += 1;
+                }
+
+                if (!javaCompleted || !nativeCompleted)
+                    timerHandler.postDelayed(this, 1000);
+            }
+        });
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -58,7 +91,6 @@ public class FibonacciActivity extends AppCompatActivity {
             @Override
             public void run() {
                 uihandler = new Handler(Looper.getMainLooper());
-                nativeStartTime = System.currentTimeMillis();
                 startFibNative(n);
             }
         }).start();
@@ -66,7 +98,6 @@ public class FibonacciActivity extends AppCompatActivity {
     }
 
     private void startFibJava(int n) {
-        final long startTime = System.currentTimeMillis();
         int i = 0, c;
         for (c = 1; c <= n; c++) {
             final int fibonacci = fibJava(i);
@@ -75,9 +106,11 @@ public class FibonacciActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    if (num == numberPrinted) {
+                        statusJavaTime.setText(statusJavaTime.getText().toString() + " : Completed");
+                    }
                     numberJava.setText(String.valueOf(fibonacci));
-                    statusJava.setText("Numbers printed - " + String.valueOf(numberPrinted)
-                            + " Time taken - " + String.valueOf(System.currentTimeMillis() - startTime) + " ms");
+                    statusJavaNumbers.setText("Numbers printed - " + String.valueOf(numberPrinted));
                 }
             });
         }
@@ -99,9 +132,11 @@ public class FibonacciActivity extends AppCompatActivity {
         uihandler.post(new Runnable() {
             @Override
             public void run() {
+                if (num == numberPrinted) {
+                    statusNativeTime.setText(statusNativeTime.getText().toString() + " : Completed");
+                }
                 numberNative.setText(String.valueOf(number));
-                statusNative.setText("Numbers printed - " + String.valueOf(numberPrinted)
-                        + " Time taken - " + String.valueOf(System.currentTimeMillis() - nativeStartTime) + " ms");
+                statusNativeNumbers.setText("Numbers printed - " + String.valueOf(numberPrinted));
             }
         });
 
