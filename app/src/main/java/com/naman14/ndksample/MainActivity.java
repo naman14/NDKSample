@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.naman14.ndksample.blur.BlurComparisonActivity;
+import com.naman14.ndksample.fibonacci.FibonacciActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        startActivity(new Intent(this, BlurComparisonActivity.class));
+        startActivity(new Intent(this, FibonacciActivity.class));
     }
 
     @Override

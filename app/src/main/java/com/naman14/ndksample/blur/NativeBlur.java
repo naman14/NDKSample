@@ -14,7 +14,7 @@ public class NativeBlur implements BlurProcess {
         System.loadLibrary("ndksample");
     }
 
-    private static native void nativeBlur(Bitmap bitmapOut, int radius, int threadCount, int threadIndex, int round);
+    private static native void startNativeBlur(Bitmap bitmapOut, int radius, int threadCount, int threadIndex, int round);
 
     @Override
     public Bitmap blur(Bitmap original, float radius) {
@@ -59,7 +59,7 @@ public class NativeBlur implements BlurProcess {
         }
 
         @Override public Void call() throws Exception {
-            nativeBlur(_bitmapOut, _radius, _totalCores, _coreIndex, _round);
+            startNativeBlur(_bitmapOut, _radius, _totalCores, _coreIndex, _round);
             return null;
         }
 

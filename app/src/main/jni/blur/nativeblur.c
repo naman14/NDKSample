@@ -298,7 +298,7 @@ void stackblurJob(unsigned char* src,                ///< input image data
     }
 }
 
-JNIEXPORT void JNICALL Java_com_naman14_ndksample_blur_NativeBlur_nativeBlur(JNIEnv* env, jclass clzz, jobject bitmapOut, jint radius, jint threadCount, jint threadIndex, jint round) {
+void nativeBlur(JNIEnv* env, jclass clzz, jobject bitmapOut, jint radius, jint threadCount, jint threadIndex, jint round) {
     // Properties
     AndroidBitmapInfo   infoOut;
     void*               pixelsOut;
