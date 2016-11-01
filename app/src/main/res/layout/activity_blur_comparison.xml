@@ -9,7 +9,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
+        android:background="@android:color/transparent"
         android:orientation="vertical">
 
         <FrameLayout
@@ -19,7 +20,8 @@
             <ImageView
                 android:id="@+id/pickImage"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
 
             <ImageView
                 android:id="@+id/btnPickImage"
@@ -37,41 +39,50 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
         android:orientation="horizontal">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/blurJava"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/txt_blur_java"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
 
         </FrameLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/blurNative"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/txt_blur_native"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
 
         </FrameLayout>
 
@@ -82,6 +93,7 @@
         android:id="@+id/fabBlur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
         android:src="@drawable/ic_play_arrow_white_24dp"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|right|end" />

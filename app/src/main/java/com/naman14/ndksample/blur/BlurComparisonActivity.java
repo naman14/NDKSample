@@ -83,6 +83,9 @@ public class BlurComparisonActivity extends AppCompatActivity {
     private void startBlur() {
         final StackBlurManager blurManager = new StackBlurManager(bitmap);
         final long initialTime = System.currentTimeMillis();
+
+        //making sure both async tasks run parallely
+
         //start java blur
         new AsyncTask<Integer, Void, Bitmap>() {
             @Override
@@ -94,9 +97,9 @@ public class BlurComparisonActivity extends AppCompatActivity {
             protected void onPostExecute(Bitmap bitmap) {
                 super.onPostExecute(bitmap);
                 imgJava.setImageBitmap(bitmap);
-                textJava.setText(String.valueOf(System.currentTimeMillis() - initialTime));
+                textJava.setText("Java \n" + String.valueOf(System.currentTimeMillis() - initialTime + " ms"));
             }
-        }.execute(10);
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, 30);
 
         //start native blur
         new AsyncTask<Integer, Void, Bitmap>() {
@@ -109,8 +112,8 @@ public class BlurComparisonActivity extends AppCompatActivity {
             protected void onPostExecute(Bitmap bitmap) {
                 super.onPostExecute(bitmap);
                 imgNative.setImageBitmap(bitmap);
-                textNative.setText(String.valueOf(System.currentTimeMillis() - initialTime));
+                textNative.setText("Native \n" + String.valueOf(System.currentTimeMillis() - initialTime + " ms"));
             }
-        }.execute(10);
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, 30);
     }
 }
