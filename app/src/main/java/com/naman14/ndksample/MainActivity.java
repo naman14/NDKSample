@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.naman14.ndksample.blur.BlurComparisonActivity;
 import com.naman14.ndksample.fibonacci.FibonacciActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        startActivity(new Intent(this, FibonacciActivity.class));
     }
 
     @Override
@@ -25,6 +26,18 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_blur:
+                startActivity(new Intent(this, BlurComparisonActivity.class));
+                break;
+            case R.id.btn_fib:
+                startActivity(new Intent(this, FibonacciActivity.class));
+
+                break;
+        }
     }
 
     @Override
