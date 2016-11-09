@@ -16,7 +16,7 @@ model {
             applicationId "com.naman14.ndksample"
             minSdkVersion.apiLevel 16
             targetSdkVersion.apiLevel 23
-            versionCode 1
+            versionCode 2
             versionName "1.0"
         }
         buildTypes {

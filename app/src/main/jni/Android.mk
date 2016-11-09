@@ -6,6 +6,8 @@ LOCAL_PATH := $(call my-dir)
     LOCAL_SRC_FILES     :=  \
                                ./blur/nativeblur.c \
                                ./fibonacci/fibonacci.c \
+                               ./lodepng/lodepng.cpp \
+                               ./lodepng/displayinfo.cpp \
                                ndksample.c \
 
 

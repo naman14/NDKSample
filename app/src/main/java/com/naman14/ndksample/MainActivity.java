@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.naman14.ndksample.blur.BlurComparisonActivity;
 import com.naman14.ndksample.fibonacci.FibonacciActivity;
+import com.naman14.ndksample.lodepng.PNGInfoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_fib:
                 startActivity(new Intent(this, FibonacciActivity.class));
-
+                break;
+            case R.id.btn_lodepng:
+                startActivity(new Intent(this, PNGInfoActivity.class));
                 break;
         }
     }
